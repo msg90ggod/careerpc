@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career PC Build Configurator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="app-body" class="min-h-screen relative flex flex-col justify-between selection:bg-purple-500 selection:text-white">
+
+  <!-- BACKGROUND RADIAL GLOW -->
+  <div class="fixed inset-0 pointer-events-none z-0 ambient-glow"></div>
+
+  <!-- BACKGROUND ORBS -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- CURSOR GLOW -->
+  <div id="cursorGlow"></div>
+
+  <!-- FLOATING SIDE DECORATIONS -->
+  <div id="floating-bg-decorations" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+  <!-- PALETTE POPUP -->
+  <div id="palettePop" role="menu" aria-label="Bảng màu chủ đạo">
+    <div class="palette-drag-handle" title="Kéo để di chuyển bảng màu"><span></span><strong>ACCENT COLORS</strong></div>
+    <button class="swatch" data-accent="sky" type="button"><i></i><span>Sapphire</span></button>
+    <button class="swatch" data-accent="ruby" type="button"><i></i><span>Ruby</span></button>
+    <button class="swatch" data-accent="emerald" type="button"><i></i><span>Emerald</span></button>
+    <button class="swatch" data-accent="violet" type="button"><i></i><span>Violet</span></button>
+    <button class="swatch" data-accent="amber" type="button"><i></i><span>Amber</span></button>
+    <button class="swatch" data-accent="cyan" type="button"><i></i><span>Cyan</span></button>
+    <button class="swatch" data-accent="rose" type="button"><i></i><span>Rose</span></button>
+    <button class="swatch" data-accent="mint" type="button"><i></i><span>Mint</span></button>
+    <button class="swatch" data-accent="rainbow" type="button"><i></i><span>Rainbow</span></button>
+    <button class="swatch" data-accent="neon" type="button"><i></i><span>Neon</span></button>
+    <button class="swatch" data-accent="mono" type="button" title="Chế độ máy yếu — đen trắng, tắt mọi hiệu ứng"><i></i><span>Mono</span></button>
+  </div>
+
+  <!-- MAIN FOREGROUND CONTENT -->
+  <div class="relative z-10 flex flex-col min-h-screen pt-[84px]">
+
+    <!-- Header -->
+    <nav class="fixed top-0 inset-x-0 z-50 nav-blur border-b border-white/5">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2 min-w-0">
+          <button id="back-btn" onclick="goBack()" class="hidden shrink-0 items-center gap-1.5 text-xs font-semibold text-purple-300 hover:text-white transition-colors bg-white/5 px-3 py-2 rounded-xl border border-white/10">
+            ← Quay lại
+          </button>
+          <div id="header-brand" class="flex items-center gap-2.5 mx-auto md:mx-0">
+            <div class="w-9 h-9 rounded-lg btn-primary flex items-center justify-center text-sm">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <span class="font-grotesk font-bold text-base sm:text-lg tracking-tight text-white whitespace-nowrap">CAREER PC <span class="gradient-text">BUILD</span></span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div id="selected-badge" class="hidden text-xs font-bold text-purple-200 bg-white/5 px-3.5 py-1.5 rounded-full border border-white/10 backdrop-blur-sm"></div>
+          <button onclick="toggleTheme()" class="ctrl-btn" type="button" aria-label="Chế độ sáng/tối" title="Chế độ sáng/tối">
+            <i id="theme-icon" class="fa-solid fa-moon"></i>
+          </button>
+          <button onclick="togglePalette(event)" class="ctrl-btn" type="button" aria-label="Đổi màu chủ đạo" title="Đổi màu chủ đạo">
+            <i class="fa-solid fa-palette"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main View Container -->
+    <main id="main-view" class="max-w-6xl mx-auto px-4 py-6 flex-1 flex flex-col justify-center items-center w-full"></main>
+  </div>
+
+
+  <script src="js/icons-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
